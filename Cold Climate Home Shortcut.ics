@@ -1,0 +1,107 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HomeAutopilot//Maintenance Schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+
+BEGIN:VEVENT
+UID:task-01-hvac@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20261001T090000
+SUMMARY:🏠 Home Shortcut: Change HVAC Filter
+DESCRIPTION:1. Turn off your heating/cooling system at your thermostat.\n2. Slide out the old air filter.\n3. Insert a clean\, matching-size filter with the arrow pointing toward the furnace.\n4. Turn the system back on.\n\n*Why:* Keeps your air clean\, lowers utility bills\, and prevents expensive system breakdowns.
+RRULE:FREQ=MONTHLY;INTERVAL=3
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:task-02-dryer@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20270115T100000
+SUMMARY:🔥 Home Shortcut: Vacuum Dryer Vent Line
+DESCRIPTION:1. Pull your clothes dryer safely away from the wall.\n2. Unplug the machine and disconnect the flexible silver duct hose.\n3. Use a vacuum or a flexible dryer lint brush to clean out all lint trapped inside the pipe.\n4. Go outside and ensure the exterior dryer vent flap opens cleanly and isn't blocked.\n\n*Why:* Hidden lint buildup inside exhaust pipes is a leading cause of house fires.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:task-03-sump@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20270301T100000
+SUMMARY:💧 Home Shortcut: Test Sump Pump
+DESCRIPTION:1. Go into your basement and find your sump pump pit.\n2. Pour a few buckets of water directly into the pit until the water level rises.\n3. Watch the float switch rise. The pump should automatically turn on and drain the water.\n4. Check that your battery backup system shows a green 'charged' light.\n\n*Why:* Ensures your pump works perfectly right before the massive spring snow thaw hits.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:task-04-gutterspring@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20270415T100000
+SUMMARY:🌱 Home Shortcut: Clean Gutters (Spring)
+DESCRIPTION:1. Safely clear all leaves\, twigs\, and winter debris out of your roof eavestroughs.\n2. Ensure downspout extensions force water at least 6 feet (2 meters) away from your foundation.\n3. Walk the perimeter of your house and check that dirt/grass slopes AWAY from your foundation wall.\n\n*Why:* Stops heavy spring rain from pooling\, cracking your foundation\, and flooding your basement.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:task-05-woodrot@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20270501T110000
+SUMMARY:🪵 Home Shortcut: Check Foundation for Wood Rot
+DESCRIPTION:1. Walk the entire exterior perimeter of your house.\n2. Look at where your siding or wooden porch framing meets the ground.\n3. Ensure there is a minimum 6-inch gap of bare concrete foundation visible between the dirt and wood.\n4. Poke low-lying wood panels with a screwdriver. If it feels soft or spongy\, you have wood rot.\n\n*Why:* Soil touching wood creates rot\, which instantly attracts structural carpenter ants and termites.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:task-06-dehumidon@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20270601T100000
+SUMMARY:💧 Home Shortcut: Start Basement Dehumidifier
+DESCRIPTION:1. Set up your dehumidifier in a central location in your basement.\n2. Rinse the mesh air filter under running water\, dry it\, and slide it back in.\n3. Set the target humidity level to 45% or 50%.\n4. Ensure the drainage hose is securely routed to your floor drain or sump pit.\n\n*Why:* Prevents summer mold growth\, musty odors\, and keeps damp-loving bugs away.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:task-07-dehumidoff@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20261015T100000
+SUMMARY:❄️ Home Shortcut: Turn Off Basement Dehumidifier
+DESCRIPTION:1. Turn off your basement dehumidifier.\n2. Empty any remaining water from the collection reservoir bucket.\n3. Clean out the filter and unplug the unit for winter storage.\n\n*Why:* Winter air is naturally dry\, and running a dehumidifier alongside your furnace wastes electricity.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:task-08-pipes@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20261101T090000
+SUMMARY:🍁 Home Shortcut: Drain Exterior Pipes
+DESCRIPTION:1. In your basement or utility room\, locate the shut-off valves for your outdoor faucets.\n2. Turn these interior valves completely OFF.\n3. Go outside\, disconnect all garden hoses\, drain them\, and store them away.\n4. Open the outdoor taps fully to drain trapped water. Leave them open all winter.\n\n*Why:* Water left inside exterior pipes freezes\, expands\, and bursts the plumbing inside your walls.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:task-09-gutterfall@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20261115T100000
+SUMMARY:🍂 Home Shortcut: Clean Gutters (Fall)
+DESCRIPTION:1. Clear out all newly fallen autumn leaves and debris from your roof eavestroughs.\n2. Make sure the gutter lines drain smoothly before the first hard winter freeze.\n\n*Why:* Clogged gutters in winter cause melting snow to back up under your shingles\, creating massive roof leaks.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:task-10-smoke@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20261101T090000
+SUMMARY:🚨 Home Shortcut: Test Smoke & CO Alarms
+DESCRIPTION:1. Walk to every smoke and carbon monoxide detector in your house.\n2. Firmly press and hold the 'Test' button until the loud siren sounds.\n3. If a unit chirps or fails to sound\, immediately replace the batteries or the unit itself.\n4. Wipe away any dust blocking the sensor vents.\n\n*Why:* Ensures your family is instantly alerted in an emergency.
+RRULE:FREQ=MONTHLY;INTERVAL=6
+STATUS:CONFIRMED
+END:VEVENT
+
+END:VCALENDAR

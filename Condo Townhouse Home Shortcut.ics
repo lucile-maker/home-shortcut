@@ -1,0 +1,57 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HomeAutopilot//Condo Schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+
+BEGIN:VEVENT
+UID:condo-task-01-fancoil@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20261001T090000
+SUMMARY:🏢 Home Shortcut: Change Condo HVAC Filter
+DESCRIPTION:1. Turn off your heating/cooling fan-coil unit at the thermostat.\n2. Open the access panel (usually in a hallway closet or wall panel).\n3. Slide out the old filter and note its dimensions.\n4. Slide in a fresh\, clean filter with the airflow arrow pointing toward the unit.\n\n*Why:* Condo fan-coil units accumulate dust quickly in small spaces. Regular changes keep your air clean and prevent common unit breakdowns.
+RRULE:FREQ=MONTHLY;INTERVAL=3
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:condo-task-02-dryerlint@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20270115T100000
+SUMMARY:🔥 Home Shortcut: Clean Condo Dryer Vent
+DESCRIPTION:1. Pull your dryer forward and unplug it.\n2. Disconnect the exhaust tube from the wall.\n3. Vacuum out all accumulated lint from the back of the dryer and the wall connection duct.\n4. Clean the lint trap mesh screen inside the machine thoroughly.\n\n*Why:* In high-rise buildings and townhouses\, dryer exhaust ducts are often very long\, making hidden lint accumulation a massive fire hazard.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:condo-task-03-waterleaks@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20270315T100000
+SUMMARY:💧 Home Shortcut: Check Appliance Water Lines
+DESCRIPTION:1. Pull out the bottom drawer of your kitchen cabinet and check under the sink for slow drips.\n2. Inspect the rubber or braided metal hoses behind your washing machine.\n3. Look for any bubbling or warping on baseboards near your dishwasher.\n\n*Why:* A small water leak in a condo or townhouse can seep through the floor and damage multiple downstairs units\, leaving you liable for structural repairs.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:condo-task-04-alarms@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20261101T090000
+SUMMARY:🚨 Home Shortcut: Test Smoke & CO Detectors
+DESCRIPTION:1. Press and hold the 'Test' button on your in-unit smoke and carbon monoxide alarms.\n2. Ensure the alarm sounds loudly.\n3. Vacuum any dust out of the sensor openings to prevent false alarms.\n\n*Why:* Ensures your system is working locally\, independently of the building-wide fire alarm network.
+RRULE:FREQ=MONTHLY;INTERVAL=6
+STATUS:CONFIRMED
+END:VEVENT
+
+BEGIN:VEVENT
+UID:condo-task-05-shutoff@homeautopilot.com
+DTSTAMP:20260913T120000Z
+DTSTART;VALUE=DATE-TIME:20270501T110000
+SUMMARY:🔧 Home Shortcut: Locate Main Water Shut-Off
+DESCRIPTION:1. Locate the primary water shut-off valves inside your unit (usually hidden behind a small wall panel in the laundry room\, bathroom\, or hallway).\n2. Gently turn the levers to make sure they aren't rusted or seized up.\n\n*Why:* If a pipe bursts or an appliance floods\, you need to be able to shut off your unit's water supply within 10 seconds to protect your property.
+RRULE:FREQ=YEARLY
+STATUS:CONFIRMED
+END:VEVENT
+
+END:VCALENDAR
