@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home Shortcut | Your home, remembered.</title>
   <meta name="description" content="Simple seasonal home maintenance reminders, delivered straight to your calendar.">
+
+  <!-- Stripe buy button web component -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
   <style>
     :root{
       --ink:#172033;
@@ -27,6 +31,7 @@
       line-height:1.5;
       -webkit-font-smoothing:antialiased;
     }
+    body.modal-open{overflow:hidden}
     a{color:inherit}
     .wrap{width:min(1040px,calc(100% - 40px));margin:auto}
     header{
@@ -144,8 +149,62 @@
     .coffee{
       color:#cdd4df;text-decoration:none;border-bottom:1px dotted #8791a1;
       opacity:.72;
+      background:none;border:0;border-bottom:1px dotted #8791a1;
+      font:inherit;padding:0;cursor:pointer;
     }
     .coffee:hover{opacity:1}
+
+    /* ---------- Coffee modal ---------- */
+    .modal{
+      position:fixed;inset:0;z-index:1000;
+      display:none;
+      align-items:center;justify-content:center;
+      padding:20px;
+    }
+    .modal[data-open="true"]{display:flex}
+    .modal-backdrop{
+      position:absolute;inset:0;
+      background:rgba(23,32,51,.55);
+      backdrop-filter:blur(3px);
+    }
+    .modal-card{
+      position:relative;
+      width:min(560px,100%);
+      max-height:90vh;overflow-y:auto;
+      background:var(--cream);
+      border:2px solid var(--ink);
+      border-radius:28px;
+      padding:38px 34px 30px;
+      box-shadow:0 30px 80px rgba(23,32,51,.35);
+      text-align:center;
+      animation:pop .18s ease-out;
+    }
+    @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+    @media (prefers-reduced-motion:reduce){.modal-card{animation:none}}
+    .modal-close{
+      position:absolute;top:14px;right:16px;
+      width:36px;height:36px;border-radius:50%;
+      border:0;background:transparent;color:var(--muted);
+      font-size:24px;line-height:1;cursor:pointer;
+    }
+    .modal-close:hover{background:rgba(23,32,51,.07);color:var(--ink)}
+    .modal-card h3{
+      margin:0 0 10px;
+      font-size:clamp(28px,5vw,36px);letter-spacing:-.045em;line-height:1.05;
+    }
+    .modal-card .lead{font-size:16px;margin:0 auto 24px;max-width:420px}
+    .buy-slot{
+      display:flex;justify-content:center;
+      min-height:48px;
+    }
+    .buy-note{
+      margin:14px 0 0;font-size:14px;color:var(--muted);
+    }
+    .modal-foot{
+      margin-top:22px;font-size:12px;color:var(--muted);
+    }
+    .modal-foot a{color:var(--muted)}
+
     @media(max-width:800px){
       .hero{padding:50px 0 65px}
       .hero-grid{grid-template-columns:1fr;gap:42px}
@@ -155,6 +214,7 @@
       .signup{flex-direction:column}
       .signup button{width:100%}
       .footer-inner{flex-direction:column;text-align:center}
+      .modal-card{padding:34px 22px 26px}
     }
   </style>
 </head>
@@ -163,7 +223,7 @@
   <div class="wrap nav">
     <a class="brand" href="#">
       <span class="logo">⌂</span>
-      <span>Home Shortcut</span>
+      <span>GEORGE</span>
     </a>
     <span class="tiny">Less to remember.</span>
   </div>
@@ -208,7 +268,7 @@
       <p>Keep in touch and we'll let you know when they're ready.</p>
       <p><strong>Next up: an AI agent that acts as your property manager.</strong></p>
 
-      <form class="signup" action="#" method="post" onsubmit="event.preventDefault(); alert('Thanks — you're on the list.');">
+      <form class="signup" id="signupForm" action="#" method="post">
         <input type="email" placeholder="Your email" aria-label="Your email" required>
         <button type="submit">Keep me posted</button>
       </form>
@@ -218,18 +278,112 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span>© Home Shortcut</span>
-    <a class="coffee" href="#" aria-label="Buy us a coffee">☕ Buy us a coffee</a>
+    <span>© George</span>
+    <button class="coffee" type="button" id="coffeeBtn">☕ Buy us a coffee</button>
   </div>
 </footer>
 
+<!-- ---------- Coffee modal ---------- -->
+<div class="modal" id="coffeeModal" role="dialog" aria-modal="true" aria-labelledby="coffeeTitle" data-open="false">
+  <div class="modal-backdrop" data-close></div>
+
+  <div class="modal-card">
+    <button class="modal-close" type="button" aria-label="Close" data-close>&times;</button>
+
+    <h3 id="coffeeTitle">Buy us a coffee or espresso martini ☕🍸</h3>
+    <p class="lead">Home Shortcut is free and always will be. If it saved you a call to the furnace guy, caffeine is gratefully accepted.</p>
+
+    <div class="buy-slot" id="buySlot">
+      <!-- Stripe buy button is inserted here when the popup first opens.
+           Fallback if you'd rather use your own button styling — delete the
+           script's mountBuyButton() call and uncomment this:
+      <a class="btn" href="https://buy.stripe.com/4gMeV5dL2bbibL05r25ZC00" target="_blank" rel="noopener">Buy us one&nbsp; →</a>
+      -->
+    </div>
+
+    <p class="buy-note">You pick the amount — a drip coffee, or the full espresso martini.</p>
+
+    <p class="modal-foot">Payments are handled securely by <a href="https://stripe.com" target="_blank" rel="noopener">Stripe</a>. We never see your card details.</p>
+  </div>
+</div>
+
 <script>
-  // Replace this with your real calendar download URL.
+  /* =========================================================
+     STRIPE CONFIG — paste your two values here.
+     - publishableKey: Dashboard → Developers → API keys
+                       (the pk_live_… / pk_test_… one. Safe to be public.)
+     - buyButtonId:    Payment link → Embed buy button → the
+                       buy-button-id in the generated snippet.
+     ========================================================= */
+  const STRIPE = {
+    publishableKey: 'pk_live_51UESux1pklXtHfIusToj4oi1MzZRkAGq94Pw9mp23ANpz2nY9xrl9mNGebeXEE0vHvlOCsSuFoowjXIeiIo7VNst00BqZt38jV',
+    buyButtonId:    'buy_btn_1UH8VW1pklXtHfIuzxiQddSv'
+  };
+
+  /* ---------- Modal ---------- */
+  const modal      = document.getElementById('coffeeModal');
+  const coffeeBtn  = document.getElementById('coffeeBtn');
+  let   lastFocus  = null;
+  let   mounted    = false;
+
+  // The buy button is created on first open. Stripe's web component sizes
+  // itself when it mounts, so mounting it inside a hidden container can
+  // leave it collapsed — building it on demand avoids that entirely.
+  function mountBuyButton(){
+    if (mounted) return;
+    const el = document.createElement('stripe-buy-button');
+    el.setAttribute('buy-button-id', STRIPE.buyButtonId);
+    el.setAttribute('publishable-key', STRIPE.publishableKey);
+    document.getElementById('buySlot').appendChild(el);
+    mounted = true;
+  }
+
+  function openModal(){
+    lastFocus = document.activeElement;
+    modal.dataset.open = 'true';
+    document.body.classList.add('modal-open');
+    mountBuyButton();
+    modal.querySelector('.modal-close').focus();
+  }
+
+  function closeModal(){
+    modal.dataset.open = 'false';
+    document.body.classList.remove('modal-open');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  coffeeBtn.addEventListener('click', openModal);
+
+  modal.addEventListener('click', function(e){
+    if (e.target.hasAttribute('data-close')) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.dataset.open === 'true') closeModal();
+  });
+
+  // Keep tab focus inside the dialog while it's open.
+  modal.addEventListener('keydown', function(e){
+    if (e.key !== 'Tab') return;
+    const focusables = modal.querySelectorAll('button, [href], stripe-buy-button');
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last  = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+
+  /* ---------- Existing page scripts ---------- */
   document.getElementById('downloadBtn').addEventListener('click', function(e){
-    if(this.getAttribute('href') === '#'){
+    if (this.getAttribute('href') === '#'){
       e.preventDefault();
       alert('Add your .ics download link here.');
     }
+  });
+
+  document.getElementById('signupForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert("Thanks — you're on the list.");
   });
 </script>
 </body>
